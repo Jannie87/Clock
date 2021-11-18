@@ -17,23 +17,28 @@ function startTime(){
     renderTime();
     setInterval(renderTime, 1000);
 }
+
 /** Updates the page with current time */
 function renderTime(){
     const h2 = document.getElementById('time');
     const date = new Date();
+    h2.innerText = getCurrentTimeString(date);
+}
+
+/**
+ * Constructs the time string from a date, includes seconds.
+ * @param {Date} date 
+ * @returns {String} in format HH:MM:SS
+ */
+function getCurrentTimeString(date) {
     let hours =date.getHours();
     let minutes = date.getMinutes();
     let seconds = date.getSeconds();
 
-    if (seconds <10) {
-        seconds ='0'+ seconds;
-    }
-    if (hours <10) {
-        hours = '0' + hours;
-    }
-    if (minutes <10) {
-        minutes = '0' + minutes;
-    }
-
-    h2.innerText =  hours + ':' + minutes + ':' + seconds;
+    if (seconds <10) {seconds ='0'+ seconds;}
+    if (hours <10) {hours = '0' + hours;}
+    if (minutes <10) {minutes = '0' + minutes;}
+    
+    return hours + ':' + minutes + ':' + seconds;
 }
+

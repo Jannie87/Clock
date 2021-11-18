@@ -18,11 +18,33 @@ function startTime(){
     setInterval(renderTime, 1000);
 }
 
-/** Updates the page with current time */
+/** Updates the page with current time and weekday*/
 function renderTime(){
-    const h2 = document.getElementById('time');
     const date = new Date();
-    h2.innerText = getCurrentTimeString(date);
+    const timeElement = document.getElementById('time');
+    timeElement.innerText =getCurrentTimeString(date)
+
+    const weekdayElement = document.getElementById('weekday');
+    weekdayElement.innerText = getCurrentWeekday(date);
+
+}
+
+/**
+ * Takes a date ande return current weekday in swedish.
+ * @param {Date} date 
+ * @returns {String}
+ */
+ function getCurrentWeekday(date){
+    const weekday = date.getDay();
+    switch (weekday) {
+        case 0:return 'Söndag';
+        case 1:return 'Måndag';
+        case 2:return 'Tisdag';
+        case 3:return 'Onsdag';
+        case 4:return 'Torsdag';
+        case 5:return 'Fredag';
+        case 6:return 'Lördag';
+    }
 }
 
 /**
